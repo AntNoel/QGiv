@@ -1,22 +1,19 @@
+import React from 'react';
 import './App.css';
+import './App.scss';
+import logo from './LOGO_THUMBNAIL.jpg';
 import Thermometer from './components/Thermometer';
 function App() {
-  const [name, setName] = useState('');
-  const [goal, setGoal] = useState(1158.0);
-  const [amountRaised, setAmountRaised] = useState(868.5);
-
-  const handleDonation = () => {};
-
   return (
-    <div className='App'>
+    <div className='container'>
       {/* Replace this with the logo as an img element with responsive styling  */}
-      Water Project
+      <img src={logo} alt='Logo' className='logo' />
+
       <Thermometer
-        name={`The Water Project - Global water Initiative`}
-        goal={1158.0}
-        amountRaised={868.5}
+        projectName={'The Water Project - Global water Initiative'}
+        projectGoal={1544.0}
+        projectAmountRaised={0}
       />
-      <button onClick={handleDonation}>Give Now!</button>
     </div>
   );
 }

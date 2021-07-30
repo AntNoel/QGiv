@@ -1,18 +1,13 @@
-/*
-
-Border around the app of black 1 px thick solid
-
-
-*/
-
-.App {
+/* .outer_progress_div {
+  width: 50%;
+  height: 20px;
   border: solid;
+  border-radius: 25px;
 }
 
-/*
-Gray background
-
-*/
-
-.thermometer {
-}
+.inner_progress_div {
+  border-radius: 25px;
+  height: 100%;
+  background-color: aqua;
+  width: 50%;
+} */

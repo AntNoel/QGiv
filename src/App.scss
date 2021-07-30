@@ -1,0 +1,236 @@
+/* CSS Resets Below*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+object,
+iframe,
+figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+code,
+em,
+img,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+b,
+u,
+i,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+main,
+canvas,
+embed,
+footer,
+header,
+nav,
+section,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: none;
+}
+
+footer,
+header,
+nav,
+section,
+main {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input {
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+/**CSS Resets Above ***/
+
+$primary-color: purple;
+$secondary-color: green;
+$button-text-color: white;
+$p-text-size: 16px;
+$background-color: darkgray;
+$progress-width: 100%;
+
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 26px;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+.container {
+  border: 0.5px solid;
+  text-align: center;
+  font-size: $p-text-size;
+  width: 100%;
+}
+
+.logo {
+  max-width: 60%;
+  height: auto;
+}
+
+.section {
+  padding: 20px 20px 30px 20px;
+  position: relative;
+
+  &--theme-gray {
+    background-color: $background-color;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 26px;
+    text-transform: uppercase;
+  }
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: none;
+  font-size: 20px;
+  color: white;
+  &--theme-purple {
+    background-color: $primary-color;
+    color: white;
+  }
+  &--big {
+    width: 100%;
+    padding: 10px 20px;
+  }
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+.snackbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  &--status-pending {
+    background-color: yellow;
+  }
+  &--status-success {
+    background-color: green;
+  }
+  &--status-error {
+    background-color: red;
+  }
+}
+
+.progress {
+  width: $progress-width;
+  height: 20px;
+  border: 0.5px solid;
+  margin-left: auto;
+  margin-right: auto;
+  /* border-radius: 25px; */
+  &__indicator {
+    /* border-radius: 25px; */
+    height: 100%;
+    background-color: $primary-color;
+    width: $progress-width;
+    transition: width 0.5s;
+    animation: progress_indicator_animation 2.5s infinite ease-in-out;
+  }
+
+  &__label_container {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: $progress-width;
+  }
+
+  &__label_amount_container {
+    margin-bottom: 5px;
+  }
+  &__label_amount {
+    color: $primary-color;
+    font-weight: bold;
+  }
+}
+
+@keyframes progress_indicator_animation {
+  0% {
+    background-color: $primary-color;
+  }
+  100% {
+    background-color: darken($primary-color, 10%);
+  }
+}
