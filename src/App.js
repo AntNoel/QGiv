@@ -1,21 +1,20 @@
 import React from 'react';
-import './App.css';
 import './App.scss';
-import logo from './LOGO_THUMBNAIL.jpg';
-import Thermometer from './components/Thermometer';
-function App() {
-  return (
-    <div className='container'>
-      {/* Replace this with the logo as an img element with responsive styling  */}
-      <img src={logo} alt='Logo' className='logo' />
 
+import Thermometer from './components/Thermometer';
+const App = () => {
+  return (
+    <div>
       <Thermometer
-        projectName={'The Water Project - Global water Initiative'}
-        projectGoal={1544.0}
-        projectAmountRaised={0}
+        projectName={'QGiv'}
+        projectGoal={544.0}
+        projectAmountRaised={360}
+        logo={
+          'https://e61876afe81f284f7d8b-eac207698dd36238bf78b86590787c76.ssl.cf2.rackcdn.com/qgiv_logo_cropped_png-1445178041'
+        }
       />
     </div>
   );
-}
+};
 
 export default App;

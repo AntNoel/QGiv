@@ -1,11 +1,10 @@
-/* CSS Resets Below*/
+/*CSS Reset Below*/
 
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
-
 html,
 body,
 div,
@@ -67,7 +66,6 @@ video {
   -webkit-font-smoothing: antialiased;
   text-size-adjust: none;
 }
-
 footer,
 header,
 nav,
@@ -75,21 +73,17 @@ section,
 main {
   display: block;
 }
-
 body {
   line-height: 1;
 }
-
 ol,
 ul {
   list-style: none;
 }
-
 blockquote,
 q {
   quotes: none;
 }
-
 blockquote:before,
 blockquote:after,
 q:before,
@@ -97,51 +91,55 @@ q:after {
   content: '';
   content: none;
 }
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-
 input {
   -webkit-appearance: none;
   border-radius: 0;
 }
 
-/**CSS Resets Above ***/
+/*CSS Reset Above*/
 
-$primary-color: purple;
+$primary-theme-color: purple;
 $secondary-color: green;
 $button-text-color: white;
-$p-text-size: 16px;
+$p-text-size: 12px;
 $background-color: darkgray;
 $progress-width: 100%;
 
 h1 {
-  font-size: 32px;
-}
-h2 {
   font-size: 26px;
 }
-
-h3 {
+h2 {
   font-size: 20px;
 }
 
-.container {
-  border: 0.5px solid;
-  text-align: center;
-  font-size: $p-text-size;
-  width: 100%;
+h3 {
+  font-size: 16px;
 }
 
-.logo {
-  max-width: 60%;
-  height: auto;
+.main {
+  display: inline-block;
+  border: 0.5px solid;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: $p-text-size;
+  width: 400px;
+  border-radius: 5px;
+  box-shadow: rgba(216, 216, 216, 0.5) 0px 0px 4px 2px;
+  &__logo {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+  }
 }
 
 .section {
-  padding: 20px 20px 30px 20px;
+  padding: 20px 20px 40px 20px;
   position: relative;
 
   &--theme-gray {
@@ -152,6 +150,33 @@ h3 {
     font-weight: bold;
     font-size: 26px;
     text-transform: uppercase;
+    margin-bottom: 20px;
+    overflow-wrap: break-word;
+    hyphens: auto;
+
+    &:hover {
+      animation: 0.8s title_animation infinite alternate;
+    }
+  }
+}
+
+.stamp {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: #0a9928;
+  font-size: 1rem;
+  font-weight: 700;
+  border: 0.5rem solid green;
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  text-transform: uppercase;
+  font-family: 'Courier';
+  transform: rotate(-14deg);
+  opacity: 0;
+  transition: opacity 0.5s;
+  &--status-active {
+    opacity: 1;
   }
 }
 
@@ -160,10 +185,12 @@ h3 {
   border-radius: 10px;
   border: none;
   font-size: 20px;
-  color: white;
   &--theme-purple {
-    background-color: $primary-color;
-    color: white;
+    background-color: $primary-theme-color;
+    color: $button-text-color;
+  }
+  &--pulse {
+    animation: button_pulse_animation 2.5s infinite ease-in-out;
   }
   &--big {
     width: 100%;
@@ -171,41 +198,27 @@ h3 {
   }
 
   &:hover {
-    background-color: darken($primary-color, 10%);
-  }
-}
-
-.snackbar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  &--status-pending {
-    background-color: yellow;
-  }
-  &--status-success {
-    background-color: green;
-  }
-  &--status-error {
-    background-color: red;
+    background-color: darken($primary-theme-color, 10%);
   }
 }
 
 .progress {
   width: $progress-width;
   height: 20px;
-  border: 0.5px solid;
-  margin-left: auto;
-  margin-right: auto;
-  /* border-radius: 25px; */
+  margin: 0 auto 20px auto;
+  border-radius: 25px;
+  &--incomplete {
+    border: 2px solid red;
+  }
+  &--complete {
+    border: 2px solid green;
+  }
   &__indicator {
-    /* border-radius: 25px; */
     height: 100%;
-    background-color: $primary-color;
+    background-color: $primary-theme-color;
     width: $progress-width;
     transition: width 0.5s;
-    animation: progress_indicator_animation 2.5s infinite ease-in-out;
+    border-radius: 25px;
   }
 
   &__label_container {
@@ -221,16 +234,71 @@ h3 {
     margin-bottom: 5px;
   }
   &__label_amount {
-    color: $primary-color;
+    color: $primary-theme-color;
     font-weight: bold;
+    &--pulse {
+      animation: label_amount_animation 0.5s 2;
+    }
   }
 }
 
-@keyframes progress_indicator_animation {
+@mixin status($color) {
+  background-color: $color;
+  padding: 3px;
+}
+.snackbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+
+  &--status-pending {
+    @include status(yellow);
+  }
+  &--status-success {
+    @include status(green);
+  }
+  &--status-error {
+    @include status(red);
+  }
+}
+
+@keyframes button_pulse_animation {
   0% {
-    background-color: $primary-color;
+    color: white;
   }
   100% {
-    background-color: darken($primary-color, 10%);
+    color: black;
+  }
+}
+
+@keyframes label_amount_animation {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.25);
+  }
+}
+
+@keyframes title_animation {
+  0% {
+    transform: skewX(-15deg);
+  }
+  5% {
+    transform: skewX(15deg);
+  }
+  10% {
+    transform: skewX(-15deg);
+  }
+  15% {
+    transform: skewX(15deg);
+  }
+  20% {
+    transform: skewX(0deg);
+  }
+  100% {
+    transform: skewX(0deg);
   }
 }
